@@ -1,0 +1,186 @@
+﻿@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(239, 68, 68, 0.16), transparent 32%),
+    radial-gradient(circle at 85% 15%, rgba(248, 113, 113, 0.14), transparent 30%),
+    linear-gradient(140deg, #fff1f2 0%, #ffffff 40%, #fff5f5 100%);
+  color: #7f1d1d;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body.dark-mode {
+  color-scheme: dark;
+  background:
+    radial-gradient(circle at 12% 10%, rgba(185, 28, 28, 0.24), transparent 32%),
+    radial-gradient(circle at 85% 15%, rgba(127, 29, 29, 0.2), transparent 30%),
+    linear-gradient(140deg, #09090b 0%, #18181b 40%, #09090b 100%);
+  color: #f4f4f5;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.cine-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 15% 20%, rgba(239, 68, 68, 0.28), transparent 30%),
+    linear-gradient(150deg, #fff1f2 0%, #ffffff 40%, #fff5f5 100%);
+}
+
+body.dark-mode .cine-loader {
+  background:
+    radial-gradient(circle at 15% 20%, rgba(220, 38, 38, 0.3), transparent 30%),
+    linear-gradient(150deg, #09090b 0%, #18181b 40%, #09090b 100%);
+}
+
+.cine-loader__text {
+  display: inline-flex;
+  gap: 0.12em;
+  font-size: clamp(2rem, 7vw, 4.8rem);
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: #b91c1c;
+  text-transform: uppercase;
+}
+
+body.dark-mode .cine-loader__text {
+  color: #fca5a5;
+}
+
+.cine-loader__text span {
+  display: inline-block;
+  animation: cine-pop 1s ease-in-out infinite;
+}
+
+@keyframes cine-pop {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.82;
+  }
+  50% {
+    transform: translateY(-8px);
+    opacity: 1;
+  }
+}
+
+.hero-glow {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background:
+    radial-gradient(circle at 20% 15%, rgba(239, 68, 68, 0.13), transparent 32%),
+    radial-gradient(circle at 70% 60%, rgba(252, 165, 165, 0.14), transparent 42%);
+}
+
+body.dark-mode .hero-glow {
+  background:
+    radial-gradient(circle at 20% 15%, rgba(220, 38, 38, 0.18), transparent 32%),
+    radial-gradient(circle at 70% 60%, rgba(127, 29, 29, 0.2), transparent 42%);
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: rgba(254, 226, 226, 0.95);
+}
+
+body.dark-mode .skeleton {
+  background: rgba(39, 39, 42, 0.95);
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(248, 113, 113, 0) 0%,
+    rgba(248, 113, 113, 0.35) 50%,
+    rgba(248, 113, 113, 0) 100%
+  );
+  animation: shimmer 1.3s infinite;
+}
+
+body.dark-mode .skeleton::after {
+  background: linear-gradient(
+    90deg,
+    rgba(244, 63, 94, 0) 0%,
+    rgba(244, 63, 94, 0.2) 50%,
+    rgba(244, 63, 94, 0) 100%
+  );
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-card {
+  position: relative;
+  animation: movie-card-in 420ms ease both;
+}
+
+.movie-poster-wrap {
+  overflow: hidden;
+}
+
+.movie-poster {
+  transition: transform 0.45s ease;
+}
+
+.movie-card:hover .movie-poster {
+  transform: scale(1.06);
+}
+
+.movie-light-sweep {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 30%, rgba(255, 255, 255, 0.22) 50%, transparent 70%);
+  transform: translateX(-130%);
+  transition: transform 0.55s ease;
+}
+
+.movie-card:hover .movie-light-sweep {
+  transform: translateX(130%);
+}
+
+@keyframes movie-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

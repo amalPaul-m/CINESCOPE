@@ -10,7 +10,7 @@ type AppRoute =
 const THEME_STORAGE_KEY = "cine_scope_theme";
 
 const getRouteFromPath = (path: string): AppRoute => {
-  const movieMatch = path.match(/^\/movie\/([^/]+)$/);
+  const movieMatch = path.match(/^\/movie\/([^/]+)\/?$/);
 
   if (movieMatch) {
     return { type: "movie", imdbID: decodeURIComponent(movieMatch[1]) };
